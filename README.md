@@ -1,4 +1,6 @@
-# Hide Hotbar Mod
+<a href="https://modrinth.com/mod/betterhidehotbar"><img src="https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/compact/available/modrinth_vector.svg" alt="Available on Modrinth"></a>
+
+# Better Hide Hotbar Mod
 
 Простой и легковесный клиентский модификатор для Minecraft (Fabric), предназначенный для точечного скрытия элементов игрового интерфейса (HUD). 
 
@@ -28,6 +30,8 @@
 *  Рука персонажа (и предметы в ней).
 *  Эффекты зелий в правом верхнем углу экрана.
 
+Если включена функция **unhide-on-damage**, то при уроне хотбар становится видимым (Отключено изначально)
+
 ---
 
 ##  Как собрать проект локально
@@ -56,4 +60,4 @@
 ##  Авторы и благодарности
 
 * **Разработчик:** [themaster1970sf](https://github.com/themaster1970sf)
-* **Особая благодарность:** [daniil10295](https://github.com/Daniil10295) за помощь в реализации корректного перехвата методов `renderMainHud` для ранних версий 1.21.7
+* **Особая благодарность:** [daniil10295](https://github.com/Daniil10295) за помощь в реализации корректного перехвата методов `renderMainHud` для ранних версий 1.21.7, интеграцией modmenu и создании функции **unhide-on-damage**

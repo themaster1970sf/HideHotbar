@@ -1,5 +1,6 @@
 package dev.lutsu.hidehotbar;
 
+import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -11,7 +12,7 @@ import org.lwjgl.glfw.GLFW;
 public class HideHotbarModClient implements ClientModInitializer {
 
     public static KeyBinding toggleHudKeyBinding;
-    private static boolean hotbarHidden = false;
+    private static boolean hudHidden = false;
 
     @Override
     public void onInitializeClient() {
@@ -22,17 +23,30 @@ public class HideHotbarModClient implements ClientModInitializer {
                 KeyBinding.Category.MISC
         ));
 
+        hudHidden = ToolBarConfig.hid = false;
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleHudKeyBinding.wasPressed()) {
-                hotbarHidden = !hotbarHidden;
-                if (client.player != null) {
-                    client.player.sendMessage(Text.literal(hotbarHidden ? "Хотбар скрыт" : "Хотбар отображается"), true);
+                if (!ToolBarConfig.enabled){ // skip button press when disabled
+                    if (client.player != null) {
+                        client.player.sendMessage(Text.translatable("hidehotbar.disabled"), true);
+                    }
+                    return;
                 }
+
+                toggleHotbar();
+                if (client.player != null) {
+                    client.player.sendMessage(Text.translatable(hudHidden ? "hidehotbar.hud_hidden" : "hidehotbar.hud_shown"), true);
+                }
+                ToolBarConfig.hid = hudHidden;
             }
         });
     }
 
+    public static void toggleHotbar(){
+        hudHidden = !hudHidden;
+    }
+
     public static boolean isHotbarHidden() {
-        return hotbarHidden;
+        return hudHidden;
     }
 }

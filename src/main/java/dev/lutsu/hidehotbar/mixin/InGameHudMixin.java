@@ -11,15 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-
-
     @Inject(method = "renderMainHud", at = @At("HEAD"), cancellable = true)
     private void onRenderMainHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (HideHotbarModClient.isHotbarHidden()) {
             ci.cancel();
         }
     }
-
 
     @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
     private void onRenderStatusBars(DrawContext context, CallbackInfo ci) {

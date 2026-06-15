@@ -1,0 +1,47 @@
+package dev.lutsu.hidehotbar.config;
+
+import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.api.ConfigCategory;
+import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+
+public class ConfigScreen {
+
+    public static Screen create(Screen parent) {
+        ConfigBuilder builder = ConfigBuilder.create()
+                .setParentScreen(parent)
+                .setTitle(Text.translatable("hidehotbar.title.config"));
+
+        ConfigEntryBuilder entryBuilder = builder.entryBuilder();
+
+        ConfigCategory general = builder.getOrCreateCategory(
+                Text.translatable("hidehotbar.category.general")
+        );
+
+        general.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.enabled"),
+                                ToolBarConfig.enabled
+                        )
+                        .setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.enabled = value)
+                        .build()
+        );
+
+        general.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideondamage"),
+                                ToolBarConfig.enabled
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideondamage.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_damage = value)
+                        .build()
+        );
+
+        builder.setSavingRunnable(ToolBarConfig::save);
+
+        return builder.build();
+    }
+}
