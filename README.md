@@ -1,3 +1,5 @@
+<a href="https://modrinth.com/mod/betterhidehotbar"><img src="https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/compact/available/modrinth_vector.svg" alt="Available on Modrinth"></a>
+
 # Better Hide Hotbar Mod
 
 Простой и легковесный клиентский модификатор для Minecraft (Fabric), предназначенный для точечного скрытия элементов игрового интерфейса (HUD). 
@@ -12,8 +14,6 @@
 
 *  **[Исходный код для Minecraft 1.21.7](https://github.com/themaster1970sf/HideHotbar/tree/1.21.7)** — использует базовое скрытие через `renderMainHud` и `renderStatusBars`.
 *  **[Исходный код для Minecraft 1.21.11](https://github.com/themaster1970sf/HideHotbar/tree/1.21.11)** — адаптирован под новые маппинги с дополнительным инжектом в метод `renderExperienceBar`.
-
-All versions **would be** available at https://modrinth.com/mod/betterhidehotbar
 
 ---
 
