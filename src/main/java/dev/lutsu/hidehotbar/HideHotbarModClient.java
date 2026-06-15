@@ -22,7 +22,7 @@ public class HideHotbarModClient implements ClientModInitializer {
             CATEGORY
         ));
 
-        hudHidden = ToolBarConfig.hid;
+        hudHidden = ToolBarConfig.hid = false;
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleHudKeyBinding.wasPressed()) {
                 if (!ToolBarConfig.enabled){ // skip button press when disabled

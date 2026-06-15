@@ -29,6 +29,9 @@
     "java": ">=21",
     "fabric-api": "*"
   },
+  "suggests": {
+    "cloth-config2": "*"
+  },
   "custom": {
     "modmenu": {
       "links": {}
