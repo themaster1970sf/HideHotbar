@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "hidehotbar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Hide Hotbar",
   "description": "Hide hotbar, experience bar, hunger and health with F7 key",
-  "authors": ["TheMaster1970"],
+  "authors": ["TheMaster1970", "daniil10295"],
   "contact": {},
   "license": "MIT",
   "icon": "assets/hidehotbar/icon.png",
