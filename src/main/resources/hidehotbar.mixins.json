@@ -3,8 +3,9 @@
   "package": "dev.lutsu.hidehotbar.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "InGameHudMixin",
-    "ExperienceBarMixin"
+    "ClientDamageMixin",
+    "ExperienceBarMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

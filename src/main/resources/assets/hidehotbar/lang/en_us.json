@@ -2,5 +2,11 @@
   "key.categories.hidehotbar": "Hide Hotbar",
   "key.hidehotbar.toggle_hud": "Toggle HUD Visibility",
   "hidehotbar.hud_hidden": "HUD hidden",
-  "hidehotbar.hud_shown": "HUD shown"
+  "hidehotbar.hud_shown": "HUD shown",
+  "hidehotbar.title.config": "Better Hide hotbar configuration",
+  "hidehotbar.disabled": "Mod is disabled!",
+  "hidehotbar.category.general": "General",
+  "hidehotbar.option.enabled": "Enable mod",
+  "hidehotbar.option.unhideondamage": "Unhide on damage",
+  "hidehotbar.option.unhideondamage.tooltip": "Unhides hotbar when damage"
 }
