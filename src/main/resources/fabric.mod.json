@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "hidehotbar",
+  "version": "1.0.1",
+  "name": "Hide Hotbar",
+  "description": "Hide hotbar, experience bar, hunger and health with F7 key",
+  "authors": ["TheMaster1970"],
+  "contact": {
+    "homepage": "https://github.com/lutsu/hidehotbar",
+    "issues": "https://github.com/lutsu/hidehotbar/issues",
+    "sources": "https://github.com/lutsu/hidehotbar"
+  },
+  "license": "MIT",
+  "icon": "assets/hidehotbar/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.lutsu.hidehotbar.HideHotbarMod"],
+    "client": ["dev.lutsu.hidehotbar.HideHotbarModClient"]
+  },
+  "mixins": ["hidehotbar.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": ">=1.21"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "GitHub": "https://github.com/lutsu/hidehotbar",
+        "Issues": "https://github.com/lutsu/hidehotbar/issues"
+      }
+    }
+  }
+}
