@@ -27,18 +27,4 @@ public class InGameHudMixin {
             ci.cancel();
         }
     }
-
-
-    @Inject(method = "renderAutosaveIndicator", at = @At("HEAD"))
-    private void onRenderAutosave(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-
-    }
-
-
-    @Inject(method = "renderExperienceLevel", at = @At("HEAD"), cancellable = true, require = 0)
-    private void onRenderExperienceLevel(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        if (HideHotbarModClient.isHotbarHidden()) {
-            ci.cancel();
-        }
-    }
 }
