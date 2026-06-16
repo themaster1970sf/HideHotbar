@@ -1,4 +1,5 @@
 <a href="https://modrinth.com/mod/betterhidehotbar"><img src="https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/compact/available/modrinth_vector.svg" alt="Available on Modrinth"></a>
+<a href="https://www.curseforge.com/minecraft/mc-mods/better-hide-hotbar"><img src="https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/compact/available/curseforge_vector.svg" alt="Available on CurseForge"></a>
 
 # Better Hide Hotbar Mod
 
