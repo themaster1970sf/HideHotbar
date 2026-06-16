@@ -32,7 +32,7 @@ public class ConfigScreen {
         general.addEntry(
                 entryBuilder.startBooleanToggle(
                                 Text.translatable("hidehotbar.option.unhideondamage"),
-                                ToolBarConfig.enabled
+                                ToolBarConfig.unhide_on_damage
                         )
                         .setTooltip(Text.translatable("hidehotbar.option.unhideondamage.tooltip"))
                         .setDefaultValue(false)
