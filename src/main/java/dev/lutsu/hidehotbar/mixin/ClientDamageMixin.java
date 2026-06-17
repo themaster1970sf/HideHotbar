@@ -1,6 +1,7 @@
 package dev.lutsu.hidehotbar.mixin;
 
 import dev.lutsu.hidehotbar.HideHotbarModClient;
+import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -21,7 +22,7 @@ public class ClientDamageMixin {
 
         if (self != client.player) return;
 
-        if (HideHotbarModClient.isHotbarHidden()) {
+        if (HideHotbarModClient.isHotbarHidden() && ToolBarConfig.unhide_on_damage) {
             HideHotbarModClient.toggleHotbar();
         }
     }
