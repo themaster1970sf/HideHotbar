@@ -1,5 +1,4 @@
 plugins {
-
     id "fabric-loom" version "1.16-SNAPSHOT"
     id "java"
 }

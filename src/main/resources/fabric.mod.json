@@ -32,7 +32,10 @@
   },
   "custom": {
     "modmenu": {
-      "links": {}
+      "links": {
+        "GitHub": "https://github.com/themaster1970sf/HideHotbar",
+        "Issues": "https://github.com/themaster1970sf/HideHotbar/issues"
+      }
     }
   }
 }
