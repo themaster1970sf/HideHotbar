@@ -33,3 +33,14 @@ java {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
+
+tasks.named('processResources', ProcessResources) {
+    def map = [
+            "version": project.version
+    ]
+    inputs.properties(map)
+
+    filesMatching("fabric.mod.json") {
+        expand(map)
+    }
+}
