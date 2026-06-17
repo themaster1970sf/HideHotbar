@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.lutsu.hidehotbar"
-version = "1.0.3+1.21.11"
+version = "1.0.4+1.21.11"
 
 repositories {
     mavenCentral()
@@ -31,4 +31,15 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
+}
+
+tasks.named('processResources', ProcessResources) {
+    def map = [
+            "version": project.version
+    ]
+    inputs.properties(map)
+
+    filesMatching("fabric.mod.json") {
+        expand(map)
+    }
 }
