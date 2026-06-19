@@ -4,8 +4,10 @@ import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 public class HideHotbarModClient implements ClientModInitializer {
@@ -32,17 +34,32 @@ public class HideHotbarModClient implements ClientModInitializer {
                     return;
                 }
 
-                toggleHotbar();
-                if (client.player != null) {
-                    client.player.sendMessage(Text.translatable(hudHidden ? "hidehotbar.hud_hidden" : "hidehotbar.hud_shown"), true);
-                }
-                ToolBarConfig.hid = hudHidden;
+                toggleHotbar(client);
             }
+        });
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.player == null) return;
+            float hpPercentage = client.player.getHealth() / client.player.getMaxHealth() *100;
+
+            if (hpPercentage < ToolBarConfig.low_hp_percentage && isHotbarHidden()){
+                toggleHotbar(client);
+            }
+
+            var foodManager = client.player.getHungerManager();
+            float hungerPercentage = foodManager.getFoodLevel();
         });
     }
 
-    public static void toggleHotbar(){
+    public static void toggleHotbar(@Nullable MinecraftClient client){
         hudHidden = !hudHidden;
+        ToolBarConfig.hid = hudHidden;
+        if (client != null && client.player != null) {
+            client.player.sendMessage(Text.translatable(hudHidden ? "hidehotbar.hud_hidden" : "hidehotbar.hud_shown"), true);
+        }
+    }
+
+    public static void toggleHotbar(){
+        toggleHotbar(null);
     }
 
     public static boolean isHotbarHidden() {

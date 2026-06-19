@@ -21,6 +21,10 @@ public class ToolBarConfig {
     public static boolean hid = false;
 
     public static boolean unhide_on_damage = false;
+    public static boolean unhide_on_low_hp = false;
+    public static boolean unhide_on_low_food = false;
+    public static int low_hp_percentage = 20;
+    public static int low_food_percentage = 20;
 
     public static void load() {
         if (!Files.exists(CONFIG_FILE)) {
