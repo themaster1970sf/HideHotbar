@@ -31,12 +31,57 @@ public class ConfigScreen {
 
         general.addEntry(
                 entryBuilder.startBooleanToggle(
-                                Text.translatable("hidehotbar.option.unhideondamage"),
+                                Text.translatable("hidehotbar.option.is_hidden"),
+                                ToolBarConfig.hid
+                        )
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.hid = value)
+                        .build()
+        );
+
+        ConfigCategory unhide = builder.getOrCreateCategory(
+                Text.translatable("hidehotbar.category.unhide_if")
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.restart"),
+                                ToolBarConfig.unhide_on_restart
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.damage.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_restart = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.damage"),
                                 ToolBarConfig.unhide_on_damage
                         )
-                        .setTooltip(Text.translatable("hidehotbar.option.unhideondamage.tooltip"))
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.damage.tooltip"))
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> ToolBarConfig.unhide_on_damage = value)
+                        .build()
+        );
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.low_hp"),
+                                ToolBarConfig.unhide_on_low_hp
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_low_hp = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startIntSlider(
+                        Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
+                        1, 1, 100
+                ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
+                        .setDefaultValue(20)
+                        .setSaveConsumer(value -> ToolBarConfig.low_hp_percentage = value)
                         .build()
         );
 

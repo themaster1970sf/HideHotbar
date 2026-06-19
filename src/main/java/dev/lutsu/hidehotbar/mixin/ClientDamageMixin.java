@@ -1,6 +1,5 @@
 package dev.lutsu.hidehotbar.mixin;
 
-import dev.lutsu.hidehotbar.HideHotbarModClient;
 import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
@@ -15,15 +14,14 @@ public class ClientDamageMixin {
 
     @Inject(method = "onDamaged", at = @At("TAIL"))
     private void onDamaged(DamageSource source, CallbackInfo ci) {
-
-        LivingEntity self = (LivingEntity)(Object)this;
+        LivingEntity self = (LivingEntity) (Object) this;
 
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (self != client.player) return;
 
-        if (HideHotbarModClient.isHotbarHidden() && ToolBarConfig.unhide_on_damage) {
-            HideHotbarModClient.toggleHotbar();
+        if (ToolBarConfig.hid && ToolBarConfig.unhide_on_damage) {
+            ToolBarConfig.hid = false;
         }
     }
 }

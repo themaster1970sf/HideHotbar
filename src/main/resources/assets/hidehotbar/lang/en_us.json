@@ -6,7 +6,15 @@
   "hidehotbar.title.config": "Better Hide hotbar configuration",
   "hidehotbar.disabled": "Mod is disabled!",
   "hidehotbar.category.general": "General",
+  "hidehotbar.category.unhide_if": "Unhide hotbar if",
   "hidehotbar.option.enabled": "Enable mod",
-  "hidehotbar.option.unhideondamage": "Unhide on damage",
-  "hidehotbar.option.unhideondamage.tooltip": "Unhides hotbar when damage"
+  "hidehotbar.option.is_hidden": "Hotbar hidden",
+  "hidehotbar.option.unhideon.restart": "Client restart",
+  "hidehotbar.option.unhideon.restart.tooltip": "Unhides hotbar after restart",
+  "hidehotbar.option.unhideon.damage": "Damage applied",
+  "hidehotbar.option.unhideon.damage.tooltip": "Unhides hotbar when damage",
+  "hidehotbar.option.unhideon.low_hp": "Low health percentage",
+  "hidehotbar.option.unhideon.low_hp.tooltip": "Unhides hotbar health percentage is too low",
+  "hidehotbar.option.unhideon.low_hp_level": "Low health percentage is:",
+  "hidehotbar.option.unhideon.low_hp_level.tooltip": "When should hotbar be unhidden (in %)"
 }
