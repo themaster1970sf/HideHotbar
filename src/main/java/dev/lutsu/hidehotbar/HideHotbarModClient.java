@@ -11,58 +11,70 @@ import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 public class HideHotbarModClient implements ClientModInitializer {
-
-    public static final String CATEGORY = "key.categories.hidehotbar";
-    public static KeyBinding toggleHudKeyBinding;
-    private static boolean hudHidden = false;
+    public KeyBinding toggleHudKeyBinding;
+    protected float previousHungerLevel;
 
     @Override
     public void onInitializeClient() {
         toggleHudKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.hidehotbar.toggle_hud",
-            GLFW.GLFW_KEY_F7,
-            CATEGORY
+                "key.hidehotbar.toggle_hud",
+                GLFW.GLFW_KEY_F7,
+                "key.categories.hidehotbar"
         ));
 
-        hudHidden = ToolBarConfig.hid = false;
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (toggleHudKeyBinding.wasPressed()) {
-                if (!ToolBarConfig.enabled){ // skip button press when disabled
-                    if (client.player != null) {
-                        client.player.sendMessage(Text.translatable("hidehotbar.disabled"), true);
-                    }
-                    return;
-                }
+        if (ToolBarConfig.unhide_on_restart) {
+            ToolBarConfig.hid = false;
+        }
+        ClientTickEvents.END_CLIENT_TICK.register(this::clientTickListener);
+    }
 
-                toggleHotbar(client);
-            }
-        });
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player == null) return;
-            float hpPercentage = client.player.getHealth() / client.player.getMaxHealth() *100;
+    protected void clientTickListener(MinecraftClient client){
+        if (!ToolBarConfig.enabled) { // skip button press when disabled
+            DisableHotbarAlert(client);
+            return;
+        }
 
-            if (hpPercentage < ToolBarConfig.low_hp_percentage && isHotbarHidden()){
+        while (toggleHudKeyBinding.wasPressed()) {
+            toggleHotbar(client);
+        }
+
+        if (client.player != null){
+            float hpPercentage = client.player.getHealth() / client.player.getMaxHealth() * 100;
+
+            if (hpPercentage < ToolBarConfig.low_hp_percentage
+                    && ToolBarConfig.unhide_on_low_hp
+                    && ToolBarConfig.hid) {
                 toggleHotbar(client);
             }
 
             var foodManager = client.player.getHungerManager();
-            float hungerPercentage = foodManager.getFoodLevel();
-        });
-    }
-
-    public static void toggleHotbar(@Nullable MinecraftClient client){
-        hudHidden = !hudHidden;
-        ToolBarConfig.hid = hudHidden;
-        if (client != null && client.player != null) {
-            client.player.sendMessage(Text.translatable(hudHidden ? "hidehotbar.hud_hidden" : "hidehotbar.hud_shown"), true);
+            float hungerPercentage = (float) foodManager.getFoodLevel() / 20 *100;
+            if (hungerPercentage < ToolBarConfig.low_food_percentage
+                    && ToolBarConfig.unhide_on_low_food
+                    && ToolBarConfig.hid) {
+                toggleHotbar(client);
+            }
         }
     }
 
-    public static void toggleHotbar(){
-        toggleHotbar(null);
+    public static void toggleHotbar(MinecraftClient client) {
+        ToolBarConfig.hid = !ToolBarConfig.hid;
+        SendHotbarAlert(client);
     }
 
-    public static boolean isHotbarHidden() {
-        return hudHidden;
+    protected static void SendHotbarAlert(MinecraftClient client) {
+        if (client.player != null) {
+            client.player.sendMessage(Text.translatable(
+                    ToolBarConfig.hid
+                            ? "hidehotbar.hud_hidden"
+                            : "hidehotbar.hud_shown"
+            ), true);
+        }
+    }
+
+    protected void DisableHotbarAlert(MinecraftClient client) {
+        if (client.player != null) {
+            client.player.sendMessage(Text.translatable("hidehotbar.disabled"), true);
+        }
     }
 }

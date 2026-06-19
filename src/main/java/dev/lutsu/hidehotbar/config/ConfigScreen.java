@@ -29,8 +29,29 @@ public class ConfigScreen {
                         .build()
         );
 
+        general.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.is_hidden"),
+                                ToolBarConfig.hid
+                        )
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.hid = value)
+                        .build()
+        );
+
         ConfigCategory unhide = builder.getOrCreateCategory(
                 Text.translatable("hidehotbar.category.unhide_if")
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.restart"),
+                                ToolBarConfig.unhide_on_restart
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.damage.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_restart = value)
+                        .build()
         );
 
         unhide.addEntry(

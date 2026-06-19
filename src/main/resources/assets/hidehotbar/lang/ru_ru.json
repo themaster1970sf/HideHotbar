@@ -6,7 +6,12 @@
   "hidehotbar.title.config": "Конфигурация мода Better Hide hotbar",
   "hidehotbar.disabled": "Mod отключен!",
   "hidehotbar.category.general": "Основное",
+  "hidehotbar.category.unhide_if": "Показать хотбар",
   "hidehotbar.option.enabled": "Включить мод",
-  "hidehotbar.option.unhideondamage": "Показать при уроне",
-  "hidehotbar.option.unhideondamage.tooltip": "Показать хотбар если нанесен урон игроку"
+  "hidehotbar.option.unhideon.damage": "Показать при уроне",
+  "hidehotbar.option.unhideon.damage.tooltip": "Показать хотбар если нанесен урон игроку",
+  "hidehotbar.option.unhideon.low_hp": "При низком здоровии",
+  "hidehotbar.option.unhideon.low_hp.tooltip": "Показать хотбар если здоровье низкое",
+  "hidehotbar.option.unhideon.low_hp_level": "Низкое здоровье - когда ниже %:",
+  "hidehotbar.option.unhideon.low_hp_level.tooltip": "Процент при котором здоровье считается низким (в %)"
 }
