@@ -12,7 +12,6 @@ import org.lwjgl.glfw.GLFW;
 
 public class HideHotbarModClient implements ClientModInitializer {
     public KeyBinding toggleHudKeyBinding;
-    protected float previousHungerLevel;
 
     @Override
     public void onInitializeClient() {
