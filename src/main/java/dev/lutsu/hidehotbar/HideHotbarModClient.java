@@ -8,6 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class HideHotbarModClient implements ClientModInitializer {
@@ -19,7 +20,8 @@ public class HideHotbarModClient implements ClientModInitializer {
                 "key.hidehotbar.toggle_hud",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_F7,
-                "key.categories.hidehotbar"
+                KeyBinding.MISC_CATEGORY
+//                "key.categories.hidehotbar"
         ));
 
         if (ToolBarConfig.unhide_on_restart) {
