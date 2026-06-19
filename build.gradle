@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.lutsu.hidehotbar"
-version = "1.0.4+1.21.11"
+version = "1.0.5+1.21.11"
 
 repositories {
     mavenCentral()
