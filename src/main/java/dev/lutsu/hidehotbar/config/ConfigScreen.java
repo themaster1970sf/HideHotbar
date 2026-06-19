@@ -77,11 +77,32 @@ public class ConfigScreen {
 
         unhide.addEntry(
                 entryBuilder.startIntSlider(
-                        Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
-                        1, 1, 100
-                ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
+                                Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
+                                ToolBarConfig.low_hp_percentage, 1, 100
+                        ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
                         .setDefaultValue(20)
                         .setSaveConsumer(value -> ToolBarConfig.low_hp_percentage = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.low_food"),
+                                ToolBarConfig.unhide_on_low_food
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.low_food.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_low_food = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startIntSlider(
+                                Text.translatable("hidehotbar.option.unhideon.low_food_level"),
+                                ToolBarConfig.low_food_percentage, 1, 100
+                        ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_food_level.tooltip"))
+                        .setDefaultValue(20)
+                        .setSaveConsumer(value -> ToolBarConfig.low_food_percentage = value)
                         .build()
         );
 

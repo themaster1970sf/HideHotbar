@@ -6,9 +6,10 @@
   "hidehotbar.title.config": "Better Hide hotbar configuration",
   "hidehotbar.disabled": "Mod is disabled!",
   "hidehotbar.category.general": "General",
-  "hidehotbar.category.unhide_if": "Unhide hotbar if",
   "hidehotbar.option.enabled": "Enable mod",
   "hidehotbar.option.is_hidden": "Hotbar hidden",
+
+  "hidehotbar.category.unhide_if": "Unhide hotbar if",
   "hidehotbar.option.unhideon.restart": "Client restart",
   "hidehotbar.option.unhideon.restart.tooltip": "Unhides hotbar after restart",
   "hidehotbar.option.unhideon.damage": "Damage applied",
@@ -16,5 +17,10 @@
   "hidehotbar.option.unhideon.low_hp": "Low health percentage",
   "hidehotbar.option.unhideon.low_hp.tooltip": "Unhides hotbar health percentage is too low",
   "hidehotbar.option.unhideon.low_hp_level": "Low health percentage is:",
-  "hidehotbar.option.unhideon.low_hp_level.tooltip": "When should hotbar be unhidden (in %)"
+  "hidehotbar.option.unhideon.low_hp_level.tooltip": "When should hotbar be unhidden (in %)",
+
+  "hidehotbar.option.unhideon.low_food": "Low food percentage",
+  "hidehotbar.option.unhideon.low_food.tooltip": "Unhides hotbar food percentage is too low",
+  "hidehotbar.option.unhideon.low_food_level": "Low food percentage is:",
+  "hidehotbar.option.unhideon.low_food_level.tooltip": "When should hotbar be unhidden (in %)"
 }
