@@ -42,7 +42,7 @@
 1. Склонируйте репозиторий и переключитесь на нужную ветку:
    
    ```bash
-   git clone [https://github.com/themaster1970sf/HideHotbar.git](https://github.com/themaster1970sf/HideHotbar.git)
+   git clone https://github.com/themaster1970sf/HideHotbar.git
    cd HideHotbar
    git checkout 1.21.11  # или 1.21.7 в зависимости от версии
    ```
