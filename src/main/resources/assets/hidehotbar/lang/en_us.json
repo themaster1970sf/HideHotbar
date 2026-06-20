@@ -18,5 +18,10 @@
   "hidehotbar.option.unhideon.low_hp": "Low health percentage",
   "hidehotbar.option.unhideon.low_hp.tooltip": "Unhides hotbar health percentage is too low",
   "hidehotbar.option.unhideon.low_hp_level": "Low health percentage is:",
-  "hidehotbar.option.unhideon.low_hp_level.tooltip": "When should hotbar be unhidden (in %)"
+  "hidehotbar.option.unhideon.low_hp_level.tooltip": "When should hotbar be unhidden (in %)",
+
+  "hidehotbar.option.unhideon.low_food": "Low food percentage",
+  "hidehotbar.option.unhideon.low_food.tooltip": "Unhides hotbar food percentage is too low",
+  "hidehotbar.option.unhideon.low_food_level": "Low food percentage is:",
+  "hidehotbar.option.unhideon.low_food_level.tooltip": "When should hotbar be unhidden (in %)"
 }
