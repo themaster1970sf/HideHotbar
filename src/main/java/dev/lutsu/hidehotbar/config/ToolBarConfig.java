@@ -21,6 +21,7 @@ public class ToolBarConfig {
     public static boolean hid = false;
 
     public static boolean unhide_on_restart = true;
+    public static boolean unhide_on_slot_change = true;
     public static boolean unhide_on_damage = false;
     public static boolean unhide_on_low_hp = false;
     public static boolean unhide_on_low_food = false;
@@ -44,7 +45,7 @@ public class ToolBarConfig {
                 hid = data.hid;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -58,7 +59,7 @@ public class ToolBarConfig {
                     GSON.toJson(data)
             );
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

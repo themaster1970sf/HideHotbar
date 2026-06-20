@@ -56,6 +56,17 @@ public class ConfigScreen {
 
         unhide.addEntry(
                 entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.slot_change"),
+                                ToolBarConfig.unhide_on_slot_change
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.slot_change.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_slot_change = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
                                 Text.translatable("hidehotbar.option.unhideon.damage"),
                                 ToolBarConfig.unhide_on_damage
                         )
