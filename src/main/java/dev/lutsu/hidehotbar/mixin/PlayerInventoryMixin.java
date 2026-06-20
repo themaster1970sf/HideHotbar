@@ -20,8 +20,9 @@ public class PlayerInventoryMixin {
     private void onUpdateItems(CallbackInfo ci) {
         if (this.selectedSlot != this.lastSlot) {
             if (this.lastSlot != -1
-                    && ToolBarConfig.unhide_on_slot_change) {
-                ToolBarConfig.hid = !ToolBarConfig.hid;
+                    && ToolBarConfig.unhide_on_slot_change
+                    && ToolBarConfig.hid) {
+                ToolBarConfig.hid = false;
             }
             this.lastSlot = this.selectedSlot;
         }
