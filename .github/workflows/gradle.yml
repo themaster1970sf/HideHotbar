@@ -40,13 +40,13 @@ jobs:
       run: ./gradlew build
 
     - name: Check files
-      run: ls -a
+      run: ls -a build/libs/
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
-        path: dist/  # or wherever your build output is
+        path: build/libs/  # or wherever your build output is
         retention-days: 30
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
