@@ -39,12 +39,15 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
-    - name: Upload Build Artifact
+    - name: Check files
+      run: ls -a
+
+    - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build-artifact
-        path: build/outputs/**/*.jar  # Adjust path to match your output location
-        retention-days: 60
+        name: build-artifacts
+        path: dist/  # or wherever your build output is
+        retention-days: 30
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
