@@ -56,6 +56,17 @@ public class ConfigScreen {
 
         unhide.addEntry(
                 entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.unhideon.slot_change"),
+                                ToolBarConfig.unhide_on_slot_change
+                        )
+                        .setTooltip(Text.translatable("hidehotbar.option.unhideon.slot_change.tooltip"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> ToolBarConfig.unhide_on_slot_change = value)
+                        .build()
+        );
+
+        unhide.addEntry(
+                entryBuilder.startBooleanToggle(
                                 Text.translatable("hidehotbar.option.unhideon.damage"),
                                 ToolBarConfig.unhide_on_damage
                         )
@@ -77,9 +88,9 @@ public class ConfigScreen {
 
         unhide.addEntry(
                 entryBuilder.startIntSlider(
-                                Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
-                                ToolBarConfig.low_hp_percentage, 1, 100
-                        ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
+                        Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
+                        1, 1, 100
+                ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
                         .setDefaultValue(20)
                         .setSaveConsumer(value -> ToolBarConfig.low_hp_percentage = value)
                         .build()
