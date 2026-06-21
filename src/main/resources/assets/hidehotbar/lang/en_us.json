@@ -23,5 +23,15 @@
   "hidehotbar.option.unhideon.low_food": "Low food percentage",
   "hidehotbar.option.unhideon.low_food.tooltip": "Unhides hotbar food percentage is too low",
   "hidehotbar.option.unhideon.low_food_level": "Low food percentage is:",
-  "hidehotbar.option.unhideon.low_food_level.tooltip": "When should hotbar be unhidden (in %)"
+  "hidehotbar.option.unhideon.low_food_level.tooltip": "When should hotbar be unhidden (in %)",
+  "hidehotbar.option.debug": "Debug mode",
+  "hidehotbar.category.hide_customize": "Hotbar hiding customization",
+  "hidehotbar.category.hide_customize.tooltip": "What should be hidden",
+  "hidehotbar.option.hide_custom.hotbar": "HIde hotbar (where items are)",
+  "hidehotbar.option.hide_custom.armor": "Hide armor",
+  "hidehotbar.option.hide_custom.healthbar": "Hide health bar",
+  "hidehotbar.option.hide_custom.food": "Hide food bar",
+  "hidehotbar.option.hide_custom.bubbles": "Hide buBbles",
+  "hidehotbar.option.hide_custom.expbar": "Hide experience bar",
+  "hidehotbar.option.hide_custom.locator": "Hide locator bar"
 }

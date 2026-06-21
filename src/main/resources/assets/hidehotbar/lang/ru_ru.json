@@ -22,5 +22,6 @@
   "hidehotbar.option.unhideon.low_hp": "При низком здоровии",
   "hidehotbar.option.unhideon.low_hp.tooltip": "Показать хотбар если здоровье низкое",
   "hidehotbar.option.unhideon.low_hp_level": "Низкое здоровье - когда ниже %:",
-  "hidehotbar.option.unhideon.low_hp_level.tooltip": "Процент при котором здоровье считается низким (в %)"
+  "hidehotbar.option.unhideon.low_hp_level.tooltip": "Процент при котором здоровье считается низким (в %)",
+  "hidehotbar.option.debug": "Режим разработки"
 }

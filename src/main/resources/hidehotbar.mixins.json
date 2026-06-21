@@ -4,8 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ClientDamageMixin",
+    "ExperienceBarMixin",
     "InGameHudMixin",
-    "PlayerInventoryMixin"
+    "PlayerInventoryMixin",
+    "BarInterfaceMixin",
+    "LocatorBarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
