@@ -101,7 +101,7 @@ public class ConfigScreen {
         unhide.add(
                 entryBuilder.startIntSlider(
                                 Text.translatable("hidehotbar.option.unhideon.low_hp_level"),
-                                1, 1, 100
+                                ToolBarConfig.low_hp_percentage, 1, 100
                         ).setTooltip(Text.translatable("hidehotbar.option.unhideon.low_hp_level.tooltip"))
                         .setDefaultValue(20)
                         .setSaveConsumer(value -> ToolBarConfig.low_hp_percentage = value)
@@ -129,6 +129,76 @@ public class ConfigScreen {
         );
 
         general.addEntry(unhide.build());
+
+        SubCategoryBuilder hidingCustomization = entryBuilder.startSubCategory(
+                Text.translatable("hidehotbar.category.hide_customize")
+        );
+        hidingCustomization.setTooltip(Text.translatable("hidehotbar.category.hide_customize.tooltip"));
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.hotbar"),
+                                ToolBarConfig.hide_hotbar
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_hotbar = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.armor"),
+                                ToolBarConfig.hide_armor
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_armor = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.healthbar"),
+                                ToolBarConfig.hide_healthbar
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_healthbar = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.food"),
+                                ToolBarConfig.hide_food
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_food = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.bubbles"),
+                                ToolBarConfig.hide_bubbles
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_bubbles = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.expbar"),
+                                ToolBarConfig.hide_expbar
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_expbar = value)
+                        .build()
+        );
+
+        hidingCustomization.add(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("hidehotbar.option.hide_custom.locator"),
+                                ToolBarConfig.hide_locator
+                        ).setDefaultValue(true)
+                        .setSaveConsumer(value -> ToolBarConfig.hide_locator = value)
+                        .build()
+        );
+
+        general.addEntry(hidingCustomization.build());
 
         if (ToolBarConfig.debug) {
 //            ConfigCategory devOptions =
@@ -167,35 +237,46 @@ public class ConfigScreen {
                 StringVisitable.plain("No translations available")
         });
 
-        addDevBooleanToggle(devOptions, entryBuilder,
-                "Hide hotbar v1 mixin",
-                ToolBarConfig.DEV_OPTIONS.hide_hotbar_v1,
-                val -> ToolBarConfig.DEV_OPTIONS.hide_hotbar_v1 = val
-        );
-
-        addDevBooleanToggle(devOptions, entryBuilder,
-                "Hide armor v1 mixin",
-                ToolBarConfig.DEV_OPTIONS.hide_armor_v1,
-                val -> ToolBarConfig.DEV_OPTIONS.hide_armor_v1 = val
-        );
-
-        addDevBooleanToggle(devOptions, entryBuilder,
-                "Hide health bar v1 mixin",
-                ToolBarConfig.DEV_OPTIONS.hide_healthbar_v1,
-                val -> ToolBarConfig.DEV_OPTIONS.hide_healthbar_v1 = val
-        );
-
-        addDevBooleanToggle(devOptions, entryBuilder,
-                "Hide food bar v1 mixin",
-                ToolBarConfig.DEV_OPTIONS.hide_food_v1,
-                val -> ToolBarConfig.DEV_OPTIONS.hide_food_v1 = val
-        );
-
-        addDevBooleanToggle(devOptions, entryBuilder,
-                "Hide bubbles v1 mixin",
-                ToolBarConfig.DEV_OPTIONS.hide_bubbles_v1,
-                val -> ToolBarConfig.DEV_OPTIONS.hide_bubbles_v1 = val
-        );
-
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide hotbar v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_hotbar_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_hotbar_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide armor v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_armor_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_armor_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide health bar v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_healthbar_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_healthbar_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide food bar v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_food_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_food_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide bubbles v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_bubbles_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_bubbles_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide experience bar v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_expbar_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_expbar_v1 = val
+//        );
+//
+//        addDevBooleanToggle(devOptions, entryBuilder,
+//                "Hide locator bar v1 mixin",
+//                ToolBarConfig.DEV_OPTIONS.hide_locator_v1,
+//                val -> ToolBarConfig.DEV_OPTIONS.hide_locator_v1 = val
+//        );
     }
 }

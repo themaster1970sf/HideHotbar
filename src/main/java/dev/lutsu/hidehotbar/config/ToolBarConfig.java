@@ -17,10 +17,12 @@ public class ToolBarConfig {
     private static final Path CONFIG_FILE =
             FabricLoader.getInstance().getConfigDir().resolve("hidehotbar.json");
 
+    // general
     public static boolean enabled = true;
     public static boolean debug = false;
     public static boolean hid = false;
 
+    // unhide conditions
     public static boolean unhide_on_restart = true;
     public static boolean unhide_on_slot_change = true;
     public static boolean unhide_on_damage = false;
@@ -29,12 +31,18 @@ public class ToolBarConfig {
     public static int low_hp_percentage = 20;
     public static int low_food_percentage = 20;
 
+    // customization of hiding
+    public static boolean hide_hotbar = true;
+    public static boolean hide_armor = true;
+    public static boolean hide_healthbar = true;
+    public static boolean hide_food = true;
+    public static boolean hide_bubbles = true;
+    public static boolean hide_expbar = true;
+    public static boolean hide_locator = true;
+
+    // other
     public static class DEV_OPTIONS {
-        public static boolean hide_hotbar_v1 = false;
-        public static boolean hide_armor_v1 = false;
-        public static boolean hide_healthbar_v1 = false;
-        public static boolean hide_food_v1 = false;
-        public static boolean hide_bubbles_v1 = false;
+
     }
 
     public static void load() {
@@ -62,10 +70,18 @@ public class ToolBarConfig {
                 low_hp_percentage = data.low_hp_percentage;
                 low_food_percentage = data.low_food_percentage;
 
+                hide_hotbar = data.hide_hotbar;
+                hide_armor = data.hide_armor;
+                hide_healthbar = data.hide_healthbar;
+                hide_food = data.hide_food;
+                hide_bubbles = data.hide_bubbles;
+                hide_expbar = data.hide_expbar;
+                hide_locator = data.hide_locator;
+
                 // load dev settings only if debug is on
-                if (debug){
-                    DEV_OPTIONS.hide_hotbar_v1 = data.hide_hotbar_v1;
-                }
+//                if (debug){
+//                    // No dev config for now
+//                }
             }
         } catch (Exception e) {
 //            e.printStackTrace();
@@ -86,9 +102,16 @@ public class ToolBarConfig {
         data.low_hp_percentage = low_hp_percentage;
         data.low_food_percentage = low_food_percentage;
 
-        if (debug){
-            data.hide_hotbar_v1 = DEV_OPTIONS.hide_hotbar_v1;
-        }
+        data.hide_hotbar = hide_hotbar;
+        data.hide_armor = hide_armor;
+        data.hide_healthbar = hide_healthbar;
+        data.hide_food = hide_food;
+        data.hide_bubbles = hide_bubbles;
+        data.hide_expbar = hide_expbar;
+        data.hide_locator = hide_locator;
+
+//        if (debug){
+//        }
 
         try {
             Files.writeString(
@@ -113,6 +136,15 @@ public class ToolBarConfig {
         int low_hp_percentage = 20;
         int low_food_percentage = 20;
 
-        boolean hide_hotbar_v1 = false;
+        boolean hide_hotbar = true;
+        boolean hide_armor = true;
+        boolean hide_healthbar = true;
+        boolean hide_food = true;
+        boolean hide_bubbles = true;
+        boolean hide_expbar = true;
+        boolean hide_locator = true;
+
+        // dev options bellow
+
     }
 }

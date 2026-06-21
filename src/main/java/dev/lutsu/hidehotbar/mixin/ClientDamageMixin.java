@@ -1,6 +1,5 @@
 package dev.lutsu.hidehotbar.mixin;
 
-import dev.lutsu.hidehotbar.HideHotbarModClient;
 import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;

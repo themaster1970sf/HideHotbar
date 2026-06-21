@@ -6,7 +6,9 @@
     "ClientDamageMixin",
     "ExperienceBarMixin",
     "InGameHudMixin",
-    "PlayerInventoryMixin"
+    "PlayerInventoryMixin",
+    "BarInterfaceMixin",
+    "LocatorBarMixin"
   ],
   "injectors": {
     "defaultRequire": 1

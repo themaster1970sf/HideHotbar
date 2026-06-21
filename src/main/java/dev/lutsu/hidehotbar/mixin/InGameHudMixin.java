@@ -12,17 +12,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-    @Inject(method = "renderMainHud", at = @At("HEAD"), cancellable = true)
-    private void onRenderMainHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        if (ToolBarConfig.hid) {
-            ci.cancel();
-        }
-    }
+//    @Inject(method = "renderMainHud", at = @At("HEAD"), cancellable = true)
+//    private void onRenderMainHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
+//        if (ToolBarConfig.hid) {
+//            ci.cancel();
+//        }
+//    }
 
     @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
     private void onRenderHotbar(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         // Hides hotbar only, keeping shown hearts, food etc
-        if (ToolBarConfig.DEV_OPTIONS.hide_hotbar_v1) {
+        if (ToolBarConfig.hid
+                && ToolBarConfig.hide_hotbar) {
             ci.cancel();
         }
     }
@@ -30,7 +31,8 @@ public class InGameHudMixin {
     @Inject(method = "renderArmor", at = @At("HEAD"), cancellable = true)
     private static void onRenderArmor(DrawContext context, PlayerEntity player, int i, int j, int k, int x, CallbackInfo ci) {
         // Hides hotbar only, keeping shown hearts, food etc
-        if (ToolBarConfig.DEV_OPTIONS.hide_armor_v1) {
+        if (ToolBarConfig.hid
+                && ToolBarConfig.hide_armor) {
             ci.cancel();
         }
     }
@@ -41,7 +43,8 @@ public class InGameHudMixin {
                                    float maxHealth, int lastHealth, int health, int absorption,
                                    boolean blinking, CallbackInfo ci) {
         // Hides hotbar only, keeping shown hearts, food etc
-        if (ToolBarConfig.DEV_OPTIONS.hide_healthbar_v1) {
+        if (ToolBarConfig.hid
+                && ToolBarConfig.hide_healthbar) {
             ci.cancel();
         }
     }
@@ -50,7 +53,8 @@ public class InGameHudMixin {
     private void onRenderAirBubbles(DrawContext context, PlayerEntity player,
                                     int heartCount, int top, int left, CallbackInfo ci) {
         // Hides hotbar only, keeping shown hearts, food etc
-        if (ToolBarConfig.DEV_OPTIONS.hide_bubbles_v1) {
+        if (ToolBarConfig.hid
+                && ToolBarConfig.hide_bubbles) {
             ci.cancel();
         }
     }
@@ -58,16 +62,16 @@ public class InGameHudMixin {
     @Inject(method = "renderFood", at = @At("HEAD"), cancellable = true)
     private void onRenderFood(DrawContext context, PlayerEntity player, int top, int right, CallbackInfo ci) {
         // Hides hotbar only, keeping shown hearts, food etc
-        if (ToolBarConfig.DEV_OPTIONS.hide_food_v1) {
+        if (ToolBarConfig.hid
+                && ToolBarConfig.hide_food) {
             ci.cancel();
         }
     }
 
-    @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
-    private void onRenderStatusBars(DrawContext context, CallbackInfo ci) {
-
-        if (ToolBarConfig.hid) {
-            ci.cancel();
-        }
-    }
+//    @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
+//    private void onRenderStatusBars(DrawContext context, CallbackInfo ci) {
+//        if (ToolBarConfig.hid) {
+//            ci.cancel();
+//        }
+//    }
 }

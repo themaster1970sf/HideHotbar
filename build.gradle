@@ -1,11 +1,10 @@
 plugins {
     id "fabric-loom" version "1.16-SNAPSHOT"
     id "java"
-//    id "com.modrinth.minotaur" version "2.+"
 }
 
 group = "dev.lutsu.hidehotbar"
-version = "1.0.7+1.21.7-alpha"
+version = "1.0.7+1.21.7"
 
 repositories {
     mavenCentral()
