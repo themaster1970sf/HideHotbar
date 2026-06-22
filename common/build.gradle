@@ -9,6 +9,13 @@ repositories {
     maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
+tasks.named("build") {
+    enabled = false
+}
+tasks.named("compileJava") {
+    enabled = false
+}
+
 dependencies {
 //    minecraft "com.mojang:minecraft:1.21.11"
 //    mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
