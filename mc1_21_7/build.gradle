@@ -5,9 +5,18 @@ plugins {
 group = "dev.lutsu.hidehotbar"
 version = "1.0.7+1.21.7"
 
-dependencies {
-    implementation project(path: ":common", configuration: "namedElements")
+sourceSets {
+    main {
+        java {
+            srcDirs += project(":common").file("src/main/java")
+        }
+        resources {
+            srcDirs += project(":common").file("src/main/resources")
+        }
+    }
+}
 
+dependencies {
     minecraft "com.mojang:minecraft:1.21.7"
     mappings "net.fabricmc:yarn:1.21.7+build.1:v2"
 
@@ -19,11 +28,6 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:19.0.147") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-}
-
-jar {
-    from(project(":common").sourceSets.main.output)
-//    from(project(":common").sourceSets.main.resources)
 }
 
 tasks.named('processResources', ProcessResources) {
