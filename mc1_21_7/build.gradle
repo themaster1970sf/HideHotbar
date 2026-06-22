@@ -23,6 +23,7 @@ dependencies {
 
 jar {
     from(project(":common").sourceSets.main.output)
+//    from(project(":common").sourceSets.main.resources)
 }
 
 tasks.named('processResources', ProcessResources) {

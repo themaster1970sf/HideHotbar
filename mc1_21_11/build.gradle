@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "dev.lutsu.hidehotbar"
-version = "1.0.7+1.21.7"
+version = "1.0.7+1.21.11"
 
 dependencies {
     implementation project(path: ":common", configuration: "namedElements")
@@ -21,6 +21,8 @@ dependencies {
 
 jar {
     from(project(":common").sourceSets.main.output)
+//    from(project(":common").sourceSets.main.resources)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.named('processResources', ProcessResources) {

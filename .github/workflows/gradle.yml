@@ -9,13 +9,12 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "1.21.7" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "1.21.7" ]
+    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,23 +38,41 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
-    - name: Upload artifacts
+    - name: Collect jars
+      run: |
+        mkdir artifacts
+
+        for dir in mc*; do
+          if [ -d "$dir" ]; then
+            version=$(echo "$dir" | sed 's/^mc//')
+
+            jar=$(find "$dir/build/libs" \
+              -type f \
+              -name "*.jar" \
+              ! -name "*-sources.jar" \
+              ! -name "*-javadoc.jar" \
+              ! -name "*-dev.jar" \
+              | head -n 1)
+
+            if [ -n "$jar" ]; then
+              cp "$jar" "artifacts/better-hotbar-hide-${version}.jar"
+            fi
+          fi
+        done
+
+    - name: Upload 1.21.7
+      if: hashFiles('artifacts/better-hotbar-hide-1.21.7.jar') != ''
       uses: actions/upload-artifact@v4
       with:
-        name: mod-build-jar
-        path: build/libs/*.jar  # or wherever your build output is
-        retention-days: 30
+        name: better-hotbar-hide-1.21.7
+        path: artifacts/better-hotbar-hide-1.21.7.jar
 
-    # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
-    # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
-    #
-    # - name: Setup Gradle
-    #   uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-    #   with:
-    #     gradle-version: '8.9'
-    #
-    # - name: Build with Gradle 8.9
-    #   run: gradle build
+    - name: Upload 1.21.8
+      if: hashFiles('artifacts/better-hotbar-hide-1.21.8.jar') != ''
+      uses: actions/upload-artifact@v4
+      with:
+        name: better-hotbar-hide-1.21.8
+        path: artifacts/better-hotbar-hide-1.21.8.jar
 
 #  dependency-submission:
 #
