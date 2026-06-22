@@ -40,25 +40,81 @@ jobs:
 
     - name: Collect jars
       run: |
-        mkdir artifacts
-
+        set -x
+        
+        mkdir -p artifacts
+        
+        echo "=== Repository root ==="
+        pwd
+        
+        echo "=== Files in root ==="
+        ls -la
+        
+        echo "=== Searching mc* directories ==="
+        find . -maxdepth 1 -type d -name "mc*" | sort
+        
         for dir in mc*; do
-          if [ -d "$dir" ]; then
-            version=$(echo "$dir" | sed 's/^mc//')
-
-            jar=$(find "$dir/build/libs" \
-              -type f \
-              -name "*.jar" \
-              ! -name "*-sources.jar" \
-              ! -name "*-javadoc.jar" \
-              ! -name "*-dev.jar" \
-              | head -n 1)
-
-            if [ -n "$jar" ]; then
-              cp "$jar" "artifacts/better-hotbar-hide-${version}.jar"
-            fi
+          if [ ! -d "$dir" ]; then
+            echo "Skipping $dir (not a directory)"
+            continue
           fi
+        
+          echo ""
+          echo "========================================"
+          echo "Processing: $dir"
+          echo "========================================"
+        
+          version=$(echo "$dir" | sed 's/^mc//')
+          echo "Version: $version"
+        
+          echo "--- Contents of $dir ---"
+          find "$dir" -maxdepth 3 -type d | sort
+        
+          if [ ! -d "$dir/build/libs" ]; then
+            echo "ERROR: $dir/build/libs does not exist"
+            continue
+          fi
+        
+          echo "--- Contents of $dir/build/libs ---"
+          ls -la "$dir/build/libs"
+        
+          echo "--- Jars found ---"
+          find "$dir/build/libs" -type f -name "*.jar"
+        
+          jar=$(find "$dir/build/libs" \
+            -type f \
+            -name "*.jar" \
+            ! -name "*-sources.jar" \
+            ! -name "*-javadoc.jar" \
+            ! -name "*-dev.jar" \
+            | head -n 1)
+        
+          echo "Selected jar: '$jar'"
+        
+          if [ -z "$jar" ]; then
+            echo "ERROR: No suitable jar found"
+            continue
+          fi
+        
+          target="artifacts/better-hotbar-hide-${version}.jar"
+        
+          echo "Copying:"
+          echo "  FROM: $jar"
+          echo "  TO:   $target"
+        
+          cp "$jar" "$target"
+        
+          echo "Copied successfully"
+          ls -la "$target"
         done
+        
+        echo ""
+        echo "=== Final artifacts ==="
+        ls -la artifacts || true
+        
+        echo ""
+        echo "=== Artifact checksums ==="
+        sha256sum artifacts/* || true
 
     - name: Upload 1.21.7
       if: hashFiles('artifacts/better-hotbar-hide-1.21.7.jar') != ''
