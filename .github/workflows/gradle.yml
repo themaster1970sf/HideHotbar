@@ -20,115 +20,116 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
 
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v6
+      # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+      # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
 
-    - name: Collect jars
-      run: |
-        set -x
-        
-        mkdir -p artifacts
-        
-        echo "=== Repository root ==="
-        pwd
-        
-        echo "=== Files in root ==="
-        ls -la
-        
-        echo "=== Searching mc* directories ==="
-        find . -maxdepth 1 -type d -name "mc*" | sort
-        
-        for dir in mc*; do
-          if [ ! -d "$dir" ]; then
-            echo "Skipping $dir (not a directory)"
-            continue
-          fi
-        
+      - name: Collect jars
+        run: |
+          set -x
+          
+          mkdir -p artifacts
+          
+          echo "=== Repository root ==="
+          pwd
+          
+          echo "=== Files in root ==="
+          ls -la
+          
+          echo "=== Searching mc* directories ==="
+          find . -maxdepth 1 -type d -name "mc*" | sort
+          
+          for dir in mc1_21_7 mc1_21_11; do
+            if [ ! -d "$dir" ]; then
+              echo "Skipping $dir (not a directory)"
+              continue
+            fi
+          
+            echo ""
+            echo "========================================"
+            echo "Processing: $dir"
+            echo "========================================"
+          
+            version=$(echo "$dir" | sed 's/^mc//')
+            echo "Version: $version"
+          
+            echo "--- Contents of $dir ---"
+            find "$dir" -maxdepth 3 -type d | sort
+          
+            if [ ! -d "$dir/build/libs" ]; then
+              echo "ERROR: $dir/build/libs does not exist"
+              continue
+            fi
+          
+            echo "--- Contents of $dir/build/libs ---"
+            ls -la "$dir/build/libs"
+          
+            echo "--- Jars found ---"
+            find "$dir/build/libs" -type f -name "*.jar"
+          
+            jar=$(find "$dir/build/libs" \
+              -type f \
+              -name "*.jar" \
+              ! -name "*-sources.jar" \
+              ! -name "*-javadoc.jar" \
+              ! -name "*-dev.jar" \
+              | head -n 1)
+          
+            echo "Selected jar: '$jar'"
+          
+            if [ -z "$jar" ]; then
+              echo "ERROR: No suitable jar found"
+              continue
+            fi
+          
+            target="artifacts/better-hotbar-hide-${version}.jar"
+          
+            echo "Copying:"
+            echo "  FROM: $jar"
+            echo "  TO:   $target"
+          
+            cp "$jar" "$target"
+          
+            echo "Copied successfully"
+            ls -la "$target"
+          done
+          
           echo ""
-          echo "========================================"
-          echo "Processing: $dir"
-          echo "========================================"
-        
-          version=$(echo "$dir" | sed 's/^mc//')
-          echo "Version: $version"
-        
-          echo "--- Contents of $dir ---"
-          find "$dir" -maxdepth 3 -type d | sort
-        
-          if [ ! -d "$dir/build/libs" ]; then
-            echo "ERROR: $dir/build/libs does not exist"
-            continue
-          fi
-        
-          echo "--- Contents of $dir/build/libs ---"
-          ls -la "$dir/build/libs"
-        
-          echo "--- Jars found ---"
-          find "$dir/build/libs" -type f -name "*.jar"
-        
-          jar=$(find "$dir/build/libs" \
-            -type f \
-            -name "*.jar" \
-            ! -name "*-sources.jar" \
-            ! -name "*-javadoc.jar" \
-            ! -name "*-dev.jar" \
-            | head -n 1)
-        
-          echo "Selected jar: '$jar'"
-        
-          if [ -z "$jar" ]; then
-            echo "ERROR: No suitable jar found"
-            continue
-          fi
-        
-          target="artifacts/better-hotbar-hide-${version}.jar"
-        
-          echo "Copying:"
-          echo "  FROM: $jar"
-          echo "  TO:   $target"
-        
-          cp "$jar" "$target"
-        
-          echo "Copied successfully"
-          ls -la "$target"
-        done
-        
-        echo ""
-        echo "=== Final artifacts ==="
-        ls -la artifacts || true
-        
-        echo ""
-        echo "=== Artifact checksums ==="
-        sha256sum artifacts/* || true
+          echo "=== Final artifacts ==="
+          ls -la artifacts || true
+          
+          echo ""
+          echo "=== Artifact checksums ==="
+          sha256sum artifacts/* || true
 
-    - name: Upload 1.21.7
-      if: hashFiles('artifacts/better-hotbar-hide-1.21.7.jar') != ''
-      uses: actions/upload-artifact@v4
-      with:
-        name: better-hotbar-hide-1.21.7
-        path: artifacts/better-hotbar-hide-1.21.7.jar
+      - name: Upload 1.21.7
+        if: hashFiles('artifacts/better-hotbar-hide-1_21_7.jar') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-hotbar-hide-1.21.7
+          path: artifacts/better-hotbar-hide-1_21_7.jar
 
-    - name: Upload 1.21.8
-      if: hashFiles('artifacts/better-hotbar-hide-1.21.8.jar') != ''
-      uses: actions/upload-artifact@v4
-      with:
-        name: better-hotbar-hide-1.21.8
-        path: artifacts/better-hotbar-hide-1.21.8.jar
+      - name: Upload 1.21.11
+        if: hashFiles('artifacts/better-hotbar-hide-1_21_11.jar') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-hotbar-hide-1.21.11
+          path: artifacts/better-hotbar-hide-1_21_11.jar
+
 
 #  dependency-submission:
 #
