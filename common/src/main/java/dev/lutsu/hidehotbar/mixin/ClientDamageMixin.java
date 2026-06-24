@@ -20,8 +20,8 @@ public class ClientDamageMixin {
 
         if (self != client.player) return;
 
-        if (ToolBarConfig.hid && ToolBarConfig.unhide_on_damage) {
-            ToolBarConfig.hid = false;
+        if (ToolBarConfig.INSTANCE.hid && ToolBarConfig.INSTANCE.unhide_on_damage) {
+            ToolBarConfig.INSTANCE.hid = false;
         }
     }
 }

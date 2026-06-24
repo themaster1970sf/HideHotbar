@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "dev.lutsu.hidehotbar.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ClientDamageMixin",
+    "InGameHudMixin",
+    "PlayerInventoryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public interface BarInterfaceMixin {
     @Inject(method = "drawExperienceLevel", at = @At("HEAD"), cancellable = true)
     private static void onDrawExperienceLevel(DrawContext context, TextRenderer textRenderer, int level, CallbackInfo ci) {
-        if (ToolBarConfig.hid && ToolBarConfig.hide_expbar) {
+        if (ToolBarConfig.INSTANCE.hid && ToolBarConfig.INSTANCE.hide_expbar) {
             ci.cancel();
         }
     }

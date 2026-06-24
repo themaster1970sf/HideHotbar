@@ -116,6 +116,14 @@ jobs:
           echo "=== Artifact checksums ==="
           sha256sum artifacts/* || true
 
+
+      - name: Upload 1.21.4
+        if: hashFiles('artifacts/better-hotbar-hide-1_21_4.jar') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-hotbar-hide-1.21.4
+          path: artifacts/better-hotbar-hide-1_21_4.jar
+
       - name: Upload 1.21.7
         if: hashFiles('artifacts/better-hotbar-hide-1_21_7.jar') != ''
         uses: actions/upload-artifact@v4

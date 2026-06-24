@@ -13,5 +13,6 @@ rootProject.name = 'hidehotbar'
 
 
 include("common")
+include("mc1_21_4")
 include("mc1_21_7")
 include("mc1_21_11")

@@ -23,14 +23,14 @@ public class HideHotbarModClient implements ClientModInitializer {
 //                "key.categories.hidehotbar"
         ));
 
-        if (ToolBarConfig.unhide_on_restart) {
-            ToolBarConfig.hid = false;
+        if (ToolBarConfig.INSTANCE.unhide_on_restart) {
+            ToolBarConfig.INSTANCE.hid = false;
         }
         ClientTickEvents.END_CLIENT_TICK.register(this::clientTickListener);
     }
 
     protected void clientTickListener(MinecraftClient client){
-        if (!ToolBarConfig.enabled) { // skip button press when disabled
+        if (!ToolBarConfig.INSTANCE.enabled) { // skip button press when disabled
             DisableHotbarAlert(client);
             return;
         }
@@ -42,31 +42,31 @@ public class HideHotbarModClient implements ClientModInitializer {
         if (client.player != null){
             float hpPercentage = client.player.getHealth() / client.player.getMaxHealth() * 100;
 
-            if (hpPercentage < ToolBarConfig.low_hp_percentage
-                    && ToolBarConfig.unhide_on_low_hp
-                    && ToolBarConfig.hid) {
+            if (hpPercentage < ToolBarConfig.INSTANCE.low_hp_percentage
+                    && ToolBarConfig.INSTANCE.unhide_on_low_hp
+                    && ToolBarConfig.INSTANCE.hid) {
                 toggleHotbar(client);
             }
 
             var foodManager = client.player.getHungerManager();
             float hungerPercentage = (float) foodManager.getFoodLevel() / 20 *100;
-            if (hungerPercentage < ToolBarConfig.low_food_percentage
-                    && ToolBarConfig.unhide_on_low_food
-                    && ToolBarConfig.hid) {
+            if (hungerPercentage < ToolBarConfig.INSTANCE.low_food_percentage
+                    && ToolBarConfig.INSTANCE.unhide_on_low_food
+                    && ToolBarConfig.INSTANCE.hid) {
                 toggleHotbar(client);
             }
         }
     }
 
     public static void toggleHotbar(MinecraftClient client) {
-        ToolBarConfig.hid = !ToolBarConfig.hid;
+        ToolBarConfig.INSTANCE.hid = !ToolBarConfig.INSTANCE.hid;
         SendHotbarAlert(client);
     }
 
     protected static void SendHotbarAlert(MinecraftClient client) {
         if (client.player != null) {
             client.player.sendMessage(Text.translatable(
-                    ToolBarConfig.hid
+                    ToolBarConfig.INSTANCE.hid
                             ? "hidehotbar.hud_hidden"
                             : "hidehotbar.hud_shown"
             ), true);

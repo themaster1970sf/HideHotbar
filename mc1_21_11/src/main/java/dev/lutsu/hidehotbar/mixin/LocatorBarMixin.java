@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LocatorBarMixin {
     @Inject(method = "renderBar", at = @At("HEAD"), cancellable = true)
     private void onRenderBar(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        if (ToolBarConfig.hid && ToolBarConfig.hide_locator) {
+        if (ToolBarConfig.INSTANCE.hid && ToolBarConfig.INSTANCE.hide_locator) {
             ci.cancel();
         }
     }
 
     @Inject(method = "renderAddons", at = @At("HEAD"), cancellable = true)
     private void onRenderAddons(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        if (ToolBarConfig.hid && ToolBarConfig.hide_locator) {
+        if (ToolBarConfig.INSTANCE.hid && ToolBarConfig.INSTANCE.hide_locator) {
             ci.cancel();
         }
     }
