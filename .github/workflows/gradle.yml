@@ -53,7 +53,7 @@ jobs:
           echo "=== Searching mc* directories ==="
           find . -maxdepth 1 -type d -name "mc*" | sort
           
-          for dir in mc1_21_7 mc1_21_11; do
+          for dir in mc1_21_4 mc1_21_7 mc1_21_11; do
             if [ ! -d "$dir" ]; then
               echo "Skipping $dir (not a directory)"
               continue
