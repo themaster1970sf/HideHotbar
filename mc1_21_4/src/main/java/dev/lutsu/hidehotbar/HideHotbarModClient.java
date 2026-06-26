@@ -1,5 +1,6 @@
 package dev.lutsu.hidehotbar;
 
+import dev.lutsu.hidehotbar.config.MinecraftVersion;
 import dev.lutsu.hidehotbar.config.ToolBarConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -14,6 +15,7 @@ public class HideHotbarModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        HideHotbarMod.currentVersion = MinecraftVersion.MC_1_21_4;
         toggleHudKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.hidehotbar.toggle_hud",
                 GLFW.GLFW_KEY_F7,

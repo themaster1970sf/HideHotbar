@@ -15,7 +15,7 @@ public class HideHotbarModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        HideHotbarMod.currentVersion = MinecraftVersion.MC_1_21_7;
+        HideHotbarMod.currentVersion = MinecraftVersion.MC_1_21_1;
         toggleHudKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.hidehotbar.toggle_hud",
                 GLFW.GLFW_KEY_F7,

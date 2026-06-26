@@ -44,12 +44,6 @@ jobs:
           
           mkdir -p artifacts
           
-          echo "=== Repository root ==="
-          pwd
-          
-          echo "=== Files in root ==="
-          ls -la
-          
           echo "=== Searching mc* directories ==="
           find . -maxdepth 1 -type d -name "mc*" | sort
           mapfile -t dirs < <(find . -maxdepth 1 -type d -name "mc*" | sort)
@@ -118,6 +112,12 @@ jobs:
           echo "=== Artifact checksums ==="
           sha256sum artifacts/* || true
 
+      - name: Upload 1.21.1
+        if: hashFiles('artifacts/better-hotbar-hide-1_21_1.jar') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-hotbar-hide-1.21.1
+          path: artifacts/better-hotbar-hide-1_21_1.jar
 
       - name: Upload 1.21.4
         if: hashFiles('artifacts/better-hotbar-hide-1_21_4.jar') != ''

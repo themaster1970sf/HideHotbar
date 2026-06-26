@@ -8,6 +8,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.StringVisitable;
 import net.minecraft.text.Text;
 
+import static dev.lutsu.hidehotbar.HideHotbarMod.currentVersion;
+
 public class ConfigScreen {
 
     public static Screen create(Screen parent) {
@@ -171,14 +173,17 @@ public class ConfigScreen {
                         .build()
         );
 
-        hidingCustomization.add(
-                entryBuilder.startBooleanToggle(
-                                Text.translatable("hidehotbar.option.hide_custom.bubbles"),
-                                ToolBarConfig.INSTANCE.hide_bubbles
-                        ).setDefaultValue(true)
-                        .setSaveConsumer(value -> ToolBarConfig.INSTANCE.hide_bubbles = value)
-                        .build()
-        );
+        if (currentVersion.compareTo(MinecraftVersion.MC_1_21_4) < 0) {
+            // in version bellow 1.21.2 (1.21.2 is in 1.21.4 group) bubbles is in `renderStatusBar`()
+            hidingCustomization.add(
+                    entryBuilder.startBooleanToggle(
+                                    Text.translatable("hidehotbar.option.hide_custom.bubbles"),
+                                    ToolBarConfig.INSTANCE.hide_bubbles
+                            ).setDefaultValue(true)
+                            .setSaveConsumer(value -> ToolBarConfig.INSTANCE.hide_bubbles = value)
+                            .build()
+            );
+        }
 
         hidingCustomization.add(
                 entryBuilder.startBooleanToggle(
@@ -189,14 +194,16 @@ public class ConfigScreen {
                         .build()
         );
 
-        hidingCustomization.add(
-                entryBuilder.startBooleanToggle(
-                                Text.translatable("hidehotbar.option.hide_custom.locator"),
-                                ToolBarConfig.INSTANCE.hide_locator
-                        ).setDefaultValue(true)
-                        .setSaveConsumer(value -> ToolBarConfig.INSTANCE.hide_locator = value)
-                        .build()
-        );
+        if (currentVersion.compareTo(MinecraftVersion.MC_1_21_7) < 0){
+            hidingCustomization.add(
+                    entryBuilder.startBooleanToggle(
+                                    Text.translatable("hidehotbar.option.hide_custom.locator"),
+                                    ToolBarConfig.INSTANCE.hide_locator
+                            ).setDefaultValue(true)
+                            .setSaveConsumer(value -> ToolBarConfig.INSTANCE.hide_locator = value)
+                            .build()
+            );
+        }
 
         general.addEntry(hidingCustomization.build());
 
